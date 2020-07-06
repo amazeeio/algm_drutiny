@@ -9,8 +9,8 @@
             "email": "blaize.kaye@amazee.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "drutiny/plugin-drupal-8": "2.x-dev"
+        "drutiny/plugin-drupal-8": "^2.0"
     }
 }
