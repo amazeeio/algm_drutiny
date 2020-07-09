@@ -5,7 +5,6 @@
 * `docker-compose up -d`
 * `docker-compose exec cli bash`
 * `COMPOSER_MEMORY_LIMIT=-1 composer install`
-* `mkdir tmp` <-- you'll need this to copy policies
 * `drush si`
 * `cd /ALGM`
 * `composer require bomoko/algm_drutiny_profile:dev-master`
@@ -14,14 +13,11 @@
   * `./vendor/bin/drutiny policy:audit Drupal-8:DblogDisabled @self`
   * `./vendor/bin/drutiny profile:run ALGMbasicaudit @self`
 * Create a new policy and test it:
-  * Create it in the `../Policy` folder.
-  * This repo is mapped to: `/ALGM/vendor/bomoko/algm_drutiny_profile/`
-  * Copy the new files to `/ALGM/vendor/bomoko/algm_drutiny_profile/Policy` inside the container.
-    * Outside container: `cp -r Policy Profiles src drupal-web/tmp`
-    * Inside container: `cd /ALGM/vendor/bomoko/algm_drutiny_profile && cp -a /app/tmp/. .`
-  * Run `composer install` on `/ALGM/vendor/bomoko/algm_drutiny_profile/`
-  * `cd /ALGM && composer update nothing`
-
+  * Create a new branch in this repo.
+  * Create the new policies, profiles, etc and push the branch up.
+  * `cd /ALGM`
+  * `composer require bomoko/algm_drutiny_profile:dev-YOURBRANCH`
+  * Your changes should now appear in the list of policies or profiles.
 
 ## Composer template for Drupal projects
 
