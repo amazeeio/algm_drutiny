@@ -1,23 +1,31 @@
 # ALGM Drutiny Drupal website example
 
-* Docker running
-* `pygmy up`
-* `docker-compose up -d`
-* `docker-compose exec cli bash`
-* `COMPOSER_MEMORY_LIMIT=-1 composer install`
-* `drush si`
-* `cd /ALGM`
-* `composer require bomoko/algm_drutiny_profile:dev-master`
-* Examples:
+* To run drupal instance:
+  * Docker running
+  * `pygmy up`
+  * `docker-compose up -d`
+  * `docker-compose exec cli bash`
+  * `COMPOSER_MEMORY_LIMIT=-1 composer install`
+  * `drush si`
+
+* Now with the drutiny development:
+  * `docker-compose exec cli bash`
+  * `cd /ALGM`
+  * `composer require bomoko/algm_drutiny_profile:dev-master`
+
+* At this point you should be able to run the following:
+  * `cd /ALGM`
   * `./vendor/bin/drutiny policy:list`
   * `./vendor/bin/drutiny policy:audit Drupal-8:DblogDisabled @self`
   * `./vendor/bin/drutiny profile:run ALGMbasicaudit @self`
+
 * Create a new policy and test it:
   * Create a new branch in this repo.
   * Create the new policies, profiles, etc and push the branch up.
   * `cd /ALGM`
   * `composer require bomoko/algm_drutiny_profile:dev-YOURBRANCH#commit-hash`
   * Your changes should now appear in the list of policies or profiles.
+
 
 ## Composer template for Drupal projects
 
