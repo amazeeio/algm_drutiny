@@ -21,7 +21,7 @@
 
 * Create a new policy and test it:
   * Create a new branch in this repo.
-  * Create the new policies, profiles, etc and push the branch up.
+  * Create the new policies, profiles, etc (root of the repo) and push the branch up.
   * `cd /ALGM`
   * `composer require bomoko/algm_drutiny_profile:dev-YOURBRANCH#commit-hash`
   * Your changes should now appear in the list of policies or profiles.
