@@ -1,5 +1,5 @@
 title: "File System Analysis"
-class: \Drutiny\algm\Policy\FileSystemAnalysis
+class: \Drutiny\algm\Audit\FileSystemAnalysis
 name: algm:FileSystemAnalysis
 description: |
   Runs a file system analysis to find the size of the files directory.
