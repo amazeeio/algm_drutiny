@@ -1,0 +1,9 @@
+title: "File System Analysis"
+class: \Drutiny\algm\Audit\FileSystemAnalysis
+name: algm:FileSystemAnalysis
+description: |
+  Runs a file system analysis to find the size of the files directory.
+success: |
+  File system size: {{ size }}MB
+  File system path: {{ path }}
+failure: Could not find file system data.

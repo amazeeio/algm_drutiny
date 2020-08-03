@@ -7,10 +7,23 @@
         {
             "name": "Blaize Kaye",
             "email": "blaize.kaye@amazee.com"
+        },
+        {
+            "name": "Tim Clifford",
+            "email": "tim.clifford@amazee.com"
+        },
+        {
+            "name": "Fran Garcia-Linares",
+            "email": "fran.garcia@amazee.com"
         }
     ],
     "minimum-stability": "stable",
     "require": {
         "drutiny/plugin-drupal-8": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drutiny\\algm\\": "src/"
+        }
     }
 }
