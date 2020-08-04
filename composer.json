@@ -1,5 +1,5 @@
 {
-    "name": "AmazeeLabs/algm_drutiny",
+    "name": "amazeelabs/algm_drutiny",
     "description": "Core repository that contains policies and profiles we use to run ALGM drutiny audits",
     "type": "library",
     "keywords": ["drutiny", "audit", "performance", "security", "accessibility"],
