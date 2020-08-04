@@ -1,7 +1,8 @@
 {
-    "name": "bomoko/algm_drutiny_profile",
-    "description": "Basic profile for ALGM drutiny audits",
+    "name": "AmazeeLabs/algm_drutiny",
+    "description": "Core repository that contains policies and profiles we use to run ALGM drutiny audits",
     "type": "library",
+    "keywords": ["drutiny", "audit", "performance", "security", "accessibility"],
     "license": "MIT",
     "authors": [
         {
@@ -17,13 +18,19 @@
             "email": "fran.garcia@amazee.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "drutiny/plugin-drupal-8": "^2.0"
+        "drutiny/drutiny": "^2.4",
+        "phpunit/phpunit": "^5.0",
+        "drutiny/plugin-drupal-8": "^2.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "symfony/yaml": "^3.2 || ^4.0"
     },
     "autoload": {
         "psr-4": {
-            "Drutiny\\algm\\": "src/"
+            "Drutiny\\algm\\": "src/",
+            "DrutinyTests\\algm\\": "tests/src/"
         }
     }
 }
