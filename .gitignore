@@ -4,5 +4,3 @@ vendor
 composer.lock
 *.phar
 .build
-
-drupal-web
