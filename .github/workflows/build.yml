@@ -1,0 +1,21 @@
+name: build
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Drutiny Phar
+        id: drutiny-build
+        uses: AmazeeLabs/drutiny_build_github_action@v0.0.1
+        with:
+          tag-ref: ${GITHUB_REF#refs/tags/}
+
+      - name: Test
+        run: |
+          ls -la
