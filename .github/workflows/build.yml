@@ -14,8 +14,8 @@ jobs:
         id: drutiny-build
         uses: AmazeeLabs/drutiny_build_github_action@v0.0.1
         with:
-          tag-ref: ${GITHUB_REF#refs/tags/}
+          tag-ref: "testing"
 
       - name: Test
         run: |
-          ls -la
+          ls -la drutiny
