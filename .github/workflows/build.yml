@@ -22,9 +22,9 @@ jobs:
           tag-ref: ${{ steps.get-tag.outputs.tag }}
           composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
 
-      - name: Test
-        run: ls -la
-      
+      - name: Change Directory
+        run: cd ./drutiny && ls -la
+
       - name: 'Echo download path'
         run: echo ${{steps.download.outputs.download-path}}
 
