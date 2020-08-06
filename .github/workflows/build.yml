@@ -1,4 +1,4 @@
-name: build
+name: Build, test and release
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +22,37 @@ jobs:
           tag-ref: ${{ steps.get-tag.outputs.tag }}
           composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
 
-      - name: Test
-        run: |
-          ls -la drutiny
+      - name: Upload phar as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: phar
+          path: ${{ steps.drutiny-build.outputs.phar }}
+
+  release:
+    name: Release
+    needs: build
+
+    steps:
+      - name: Download phar artifact from build step
+        id: download
+        uses: actions/download-artifact@v2
+        with:
+          name: phar
+
+      - name: Get tag
+        id: get-tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
+
+      - name: Bump version and create release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ steps.get-tag.outputs.tag }}
+          tag: ${{ steps.get-tag.outputs.tag }}
+          body: 'Next stable release.'
+          allowUpdates: true
+          artifacts: ${{steps.download.outputs.download-path}}
+          artifactContentType: application/x-php
