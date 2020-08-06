@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: phar
-          path: *drutiny*.phar
+          path: "**/*drutiny*.phar"
 
   release:
     name: Release
