@@ -10,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get tag
+        id: get-tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+
       - name: Build Drutiny Phar
         id: drutiny-build
         uses: AmazeeLabs/drutiny_build_github_action@v0.0.1
         with:
-          tag-ref: "testing"
+          tag-ref: ${{ steps.get-tag.outputs.tag }}
 
       - name: Test
         run: |
