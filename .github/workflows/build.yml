@@ -26,13 +26,13 @@ jobs:
         run: cd ./drutiny && ls -la
 
       - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+        run: echo ${{steps.drutiny-build.outputs.phar}}
 
       - name: Upload phar as artifact
         uses: actions/upload-artifact@v2
         with:
           name: phar
-          path: ${{ steps.drutiny-build.outputs.phar }}
+          path: *drutiny*.phar
 
   release:
     name: Release
