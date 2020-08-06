@@ -22,6 +22,12 @@ jobs:
           tag-ref: ${{ steps.get-tag.outputs.tag }}
           composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
 
+      - name: Test
+        run: ls -la
+      
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
+
       - name: Upload phar as artifact
         uses: actions/upload-artifact@v2
         with:
