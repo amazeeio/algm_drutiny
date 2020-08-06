@@ -51,8 +51,11 @@ jobs:
         id: get-tag
         run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
 
-      - name: Test
-        run: ls -la
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
 
       - name: Bump version and create release
         uses: ncipollo/release-action@v1
