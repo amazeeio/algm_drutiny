@@ -65,5 +65,5 @@ jobs:
           tag: ${{ steps.get-tag.outputs.tag }}
           body: 'Next stable release.'
           allowUpdates: true
-          artifacts: ${{steps.download.outputs.download-path}}
+          artifacts: "**/*drutiny*.phar"
           artifactContentType: application/x-php
