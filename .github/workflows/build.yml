@@ -19,6 +19,7 @@ jobs:
         uses: AmazeeLabs/drutiny_build_github_action@v0.0.1
         with:
           tag-ref: ${{ steps.get-tag.outputs.tag }}
+          composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
 
       - name: Test
         run: |
