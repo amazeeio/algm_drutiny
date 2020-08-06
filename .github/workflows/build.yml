@@ -45,16 +45,17 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: phar
+          path: ./
 
       - name: Get tag
         id: get-tag
         run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
 
-      - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+      - name: Test
+        run: ls -la
 
       - name: Bump version and create release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ steps.get-tag.outputs.tag }}
