@@ -1,0 +1,15 @@
+title: "Page Speed Insights policy"
+class: \Drutiny\algm\Audit\PageSpeedInsightsScore
+name: ALGMPerformance:PSI
+description: |
+  Runs PSI against LAGOON_ROUTE
+success: |
+  Success: All PageSpeed Insights metrics are nominal
+      Performance   {{ report.performance }}
+      SEO           {{ report.seo }}
+      Accessibility {{ report.accessibility }}
+failure: |
+  Warning: PageSpeed Insights Minimums Not Met
+    Performance   {{ report.performance }}
+    SEO           {{ report.seo }}
+    Accessibility {{ report.accessibility }}
