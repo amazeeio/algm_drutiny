@@ -4,3 +4,4 @@ vendor
 composer.lock
 *.phar
 .build
+dev-*

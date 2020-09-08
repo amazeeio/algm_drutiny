@@ -1,10 +1,8 @@
-title: "Drupal Module Updates policy"
-class: \Drutiny\algm\Audit\ModuleUpdateStatus
-name: algm:ModuleUpdates
+title: "Drupal 8 Module Updates policy"
+class: \Drutiny\algm\Audit\D8ModuleUpdateStatus
+name: algm:D8ModuleUpdates
 tags:
   - Drupal 8
-  - Drupal 7
-  - Best Practice
   - Security
 description: |
   Throughout the lifetime of your site, the Drupal project and its community
@@ -16,15 +14,9 @@ description: |
   schedule for your site, regression testing changes is of equal importance.
 success: No updates were found.
 failure: >-
-  [{
-  {{#updates}}
-  "title": "{{title}}",
-  "name": "{{ name }}",
-  "existing_version": "{{existing_version}}",
-  "recommended": "{{recommended}}",
-  "status_msg": "{{status_msg}}",
-  {{/updates}}
-  }]
+  [ {{#updates}}
+    {"name": "{{ name }}", "version": "{{ version }}", "latest": "{{ latest }}", "latest_status": "{{ latest_status }}", "description": "{{ description }}"}{{^last_item}},{{/last_item}}
+  {{/updates}} ]
 warning: |
   There are modules with available updates. Please consider upgrading as it
   reduces the chance of introducing regressions when more urgent security updates
