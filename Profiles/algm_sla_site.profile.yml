@@ -1,0 +1,5 @@
+title: 'ALGM SLA audit'
+description: 'This audit is for sites which are under the ALGM SLA'
+policies:
+    'algm:DrushStatus':
+        { severity: 4 }

@@ -1,0 +1,28 @@
+title: "Drupal Security Module Updates policy"
+class: \Drutiny\algm\Audit\SecurityModuleUpdates
+name: algm:SecurityModuleUpdates
+tags:
+  - Drupal 9
+  - Drupal 8
+  - Drupal 7
+  - Security
+description: |
+  It important to keep your site up to date and patched from known security vulnerabilities.
+  Note that upgrading modules, especially between major versions can introduce
+  regressions into your site. While its important to maintain a continual update
+  schedule for your site, regression testing changes is of equal importance.
+success: No security updates were found.
+failure: >-
+  [{
+  {{#updates}}
+  "title": "{{title}}",
+  "name": "{{ name }}",
+  "existing_version": "{{existing_version}}",
+  "recommended": "{{recommended}}",
+  "status_msg": "{{status_msg}}",
+  {{/updates}}
+  }]
+warning: |
+  There are modules with available updates. Please consider upgrading as it
+  reduces the chance of introducing regressions when more urgent security updates
+  are required.

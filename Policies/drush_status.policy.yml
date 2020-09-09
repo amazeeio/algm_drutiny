@@ -1,0 +1,8 @@
+title: "Drush Status"
+class: \Drutiny\algm\Audit\DrushStatus
+name: algm:DrushStatus
+description: |
+  Runs a simple Drush status for testing purposes.
+success: |
+  {{ status }}
+failure: Failed to run Drush
