@@ -1,4 +1,4 @@
-title: 'ALGM basic audit'
+title: 'ALGM Basic Audit'
 description: 'A basic audit for ALGM'
 policies:
     'Drupal-8:CssAggregation': { severity: 2 }
