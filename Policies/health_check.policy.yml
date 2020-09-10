@@ -1,0 +1,8 @@
+title: "Health Check Policy"
+class: \Drutiny\algm\Audit\HealthCheck
+name: algm:HealthCheck
+description: |
+  Runs tests to see if the site is running and healthy.
+success: >-
+  {{ health_status }}
+failure: The site has failed to bootstrap

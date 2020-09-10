@@ -2,32 +2,106 @@
 
 namespace Drutiny\algm\Audit;
 
+use Drutiny\algm\Utils\MarkdownTableGenerator;
+use Drutiny\Annotation\Param;
+use Drutiny\Annotation\Token;
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
+use Exception;
 
 /**
+ *  Filesystem analysis.
  *
+ * @Token(
+ *  name = "size",
+ *  type = "string",
+ *  description = "Result from file system analysis"
+ * )
+ *
+ * @Param(
+ *  name = "filesystem",
+ *  type = "array",
+ *  description = "the storage usage information for both disk and inodes.",
+ * )
  */
 class FileSystemAnalysis extends Audit {
+
+  const MAX_STRING_LENGTH = 60;
 
   /**
    * @inheritdoc
    */
   public function audit(Sandbox $sandbox) {
     $path = $sandbox->getParameter('path', '%files');
-    $stat = $sandbox->drush(['format' => 'json'])->status();
+    $status = $sandbox->drush(['format' => 'json'])->status();
 
-    $path = strtr($path, $stat['%paths']);
+    if ($status === null) {
+      return AUDIT::ERROR;
+    }
 
-    $size = trim($sandbox->exec("du -d 0 -m $path | awk '{print $1}'"));
+    $options = $sandbox->getTarget()->getOptions();
+
+    $path = $options["root"] . '/' . strtr($path, $status['%paths']);
+
+    try {
+      $size = trim($sandbox->exec("du -d 0 -m $path | awk '{print $1}'"));
+    }
+    catch (Exception $e) {
+      return Audit::ERROR;
+    }
 
     $max_size = (int) $sandbox->getParameter('max_size', 20);
 
-    // Set the size in MB for rendering
+    // Set fs size in MB
     $sandbox->setParameter('size', $size);
-    // Set the actual path.
     $sandbox->setParameter('path', $path);
 
-    return $size < $max_size;
+    try {
+      $output = $sandbox->exec("df -H");
+    }
+    catch (Exception $e) {
+      return Audit::ERROR;
+    }
+
+    $disk = array_map(function($line) {
+      $elements=preg_split('/\s+/',$line);
+
+      return([
+        'filesystem' => $elements[0],
+        'size' => $elements[1],
+        'used' => $elements[2],
+        'available' => $elements[3],
+        'use%' => $elements[4],
+        'mounted' => $elements[5]
+      ]);
+    },explode("\n",$output));
+
+    $columns = ['Fs', 'Size', 'Used', 'Avail.', 'Use%'];
+    $rows = [];
+    foreach ($disk as $key => $d) {
+      $fs = $d["filesystem"]." (".$d["mounted"].")";
+
+      $fs_mnt = (strlen($fs) > self::MAX_STRING_LENGTH) ?
+        substr($fs, 0, self::MAX_STRING_LENGTH - 3).'...'
+        : $fs;
+
+      $rows[] = [ $fs_mnt, $d["size"], $d["used"], $d["available"], $d["use%"] ];
+    }
+
+    array_shift($rows);
+    array_pop($rows);
+
+    $md_table = new MarkdownTableGenerator($columns, $rows);
+    $rendered_table_markdown = $md_table->render();
+
+    $sandbox->setParameter('filesystem', $rendered_table_markdown);
+
+
+
+    if ($size < $max_size) {
+      return Audit::SUCCESS;
+    }
+
+    return Audit::FAIL;
   }
 }

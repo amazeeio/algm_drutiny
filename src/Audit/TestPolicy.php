@@ -7,15 +7,9 @@ use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
 
 /**
- * Simple Drush Status test
- *
- * @Token(
- *  name = "status",
- *  type = "string",
- *  description = "Results from Drush status"
- * )
+ * Test policy
  */
-class DrushStatus extends Audit {
+class TestPolicy extends Audit {
 
   /**
    * @inheritdoc
@@ -24,12 +18,10 @@ class DrushStatus extends Audit {
     $status = $sandbox->drush()->status();
 
     if ($status === null) {
-      // If null, then status can't be found.
       return AUDIT::ERROR;
     }
 
     $sandbox->setParameter('status', $status);
-
     return Audit::SUCCESS;
   }
 }

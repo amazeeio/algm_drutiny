@@ -1,5 +1,18 @@
 title: 'ALGM SLA audit'
 description: 'This audit is for sites which are under the ALGM SLA'
 policies:
-    'algm:DrushStatus':
+    'algm:HealthCheck':
         { severity: 4 }
+    'algm:DrushStatus':
+        { severity: 2 }
+    'algm:D9ModuleUpdates':
+        { severity: 4 }
+    'algm:FileSystemAnalysis':
+        { severity: 2 }
+    'Drupal-8:CronLast': { severity: 2 }
+    'Drupal:largeFiles': { severity: 2 }
+    'fs:largeFiles': { severity: 2 }
+    'fs:DrupalThemeDirectory': { severity: 2 }
+    'fs:SensitivePublicFiles': { severity: 2 }
+    'Database:Fulltext': { severity: 2 }
+    'Database:Size': { severity: 2 }

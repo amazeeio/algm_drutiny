@@ -1,0 +1,8 @@
+title: "Test Policy"
+class: \Drutiny\algm\Audit\TestPolicy
+name: algm:Test
+description: |
+  For testing purposes.
+success: |
+  {{ status }}
+failure: Failure status.

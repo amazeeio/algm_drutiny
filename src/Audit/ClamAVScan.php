@@ -5,9 +5,10 @@ namespace Drutiny\algm\Audit;
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
 use Drutiny\Annotation\Param;
+use Exception;
 
 /**
- * Scans the repo for malcious files using ClamAV.
+ * Scans the repo for malicious files using ClamAV.
  * @Param(
  *  name = "scan_directory",
  *  type = "string",
@@ -22,6 +23,8 @@ class ClamAVScan extends Audit {
    * This will be called before audit().
    *
    * Must return TRUE to continue audit.
+   * @param Sandbox $sandbox
+   * @return bool
    */
   protected function requireClamAVInstalled(Sandbox $sandbox)
   {
