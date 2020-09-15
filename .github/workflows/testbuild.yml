@@ -1,0 +1,35 @@
+name: Testing build - no release 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get tag
+        id: get-tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+
+      - name: Build Drutiny Phar
+        id: drutiny-build
+        uses: AmazeeLabs/drutiny_build_github_action@v0.0.1
+        with:
+          tag-ref: ${{ steps.get-tag.outputs.tag }}
+          composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
+          composer-repos: "bomoko/algm_drutiny_plugin vcs https://github.com/AmazeeLabs/algm_drutiny.git"
+
+      - name: Change Directory
+        run: cd ./drutiny && ls -la
+
+      - name: 'Echo download path'
+        run: echo ${{steps.drutiny-build.outputs.phar}}
+
+      - name: Upload phar as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: phar
+          path: "**/*drutiny*.phar"
+
