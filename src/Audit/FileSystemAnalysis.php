@@ -67,12 +67,12 @@ class FileSystemAnalysis extends Audit {
       $elements=preg_split('/\s+/',$line);
 
       return([
-        'filesystem' => $elements[0],
-        'size' => $elements[1],
-        'used' => $elements[2],
-        'available' => $elements[3],
-        'use%' => $elements[4],
-        'mounted' => $elements[5]
+        'filesystem' => isset($elements[0]) ? $elements[0] : '',
+        'size' => isset($elements[1]) ? $elements[1] : '',
+        'used' => isset($elements[2]) ? $elements[2] : '',
+        'available' => isset($elements[3]) ? $elements[3] : '',
+        'use%' => isset($elements[4]) ? $elements[4] : '',
+        'mounted' => isset($elements[5]) ? $elements[5] : '',
       ]);
     },explode("\n",$output));
 

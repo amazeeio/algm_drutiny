@@ -1,18 +1,62 @@
 title: 'ALGM SLA audit'
 description: 'This audit is for sites which are under the ALGM SLA'
 policies:
+    # ALGM specific
     'algm:HealthCheck':
-        { severity: 4 }
+      { severity: high }
     'algm:DrushStatus':
-        { severity: 2 }
+      { severity: normal }
     'algm:D9ModuleUpdates':
-        { severity: 4 }
+      { severity: high }
     'algm:FileSystemAnalysis':
-        { severity: 2 }
-    'Drupal-8:CronLast': { severity: 2 }
-    'Drupal:largeFiles': { severity: 2 }
-    'fs:largeFiles': { severity: 2 }
-    'fs:DrupalThemeDirectory': { severity: 2 }
-    'fs:SensitivePublicFiles': { severity: 2 }
-    'Database:Fulltext': { severity: 2 }
-    'Database:Size': { severity: 2 }
+      { severity: normal }
+    # D8
+    'Drupal-8:CronLast': { severity: normal }
+    'Drupal-8:JsAggregation': { severity: normal }
+    'Drupal-8:CssAggregation': { severity: normal }
+    'Drupal-8:KintDisabled': { severity: normal }
+    'Drupal-8:DblogDisabled': { severity: normal }
+    'Drupal-8:DevelDisabled': { severity: normal }
+    'Drupal-8:DuplicateModules': { severity: normal }
+    'Drupal-8:ErrorLevel': { severity: normal }
+    'Drupal-8:Fast404Enabled': { severity: normal }
+    'Drupal-8:WebprofilerDisabled': { severity: normal }
+    'Drupal-8:ContentOwnedByAnonymous': { severity: normal }
+    # FS and Database
+    'fs:largeFiles': { severity: normal }
+    'fs:DrupalThemeDirectory':
+      { severity: normal,
+        parameters: {
+          path: '/app/web/themes/custom/',
+          max_size: 50
+        }
+      }
+    'Drupal:largeFiles': { severity: normal }
+    'Drupal:updates':
+      { severity: normal,
+        parameters: {
+          max_size: 1000,
+          warning_size: 250
+        }
+      }
+    'Database:Fulltext': { severity: normal }
+    'Database:Size': { severity: normal }
+    # Security
+    'fs:SensitivePublicFiles':
+      {
+        severity: high,
+        parameters: {
+          extensions: 'sql, sh, php, py, bz2, gz, tar, tgz, zip'
+        }
+      }
+    'Drupal-8:UserRegistrationAdminOnly': { severity: normal }
+    'Drupal-8:User1LockDown':
+      { severity: high,
+        parameters: {
+          blacklist: 'admin, root, drupa, amazee, amazeelabs, zhadmin',
+          status: 1
+        }
+      }
+include:
+  - securityheaders
+  - d8_security_review
