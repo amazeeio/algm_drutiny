@@ -1,0 +1,8 @@
+title: "Database Analysis"
+class: \Drutiny\algm\Audit\DatabaseAnalysis
+name: algm:DatabseAnalysis
+description: |
+  Runs a databsae analysis to find out info about the database.
+success: |
+  {{ database_stats }}
+failure: Could not find database info.

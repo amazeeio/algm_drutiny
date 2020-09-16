@@ -8,6 +8,8 @@ policies:
       { severity: normal }
     'algm:D9ModuleUpdates':
       { severity: high }
+    'algm:D8SecurityModuleUpdates':
+      { severity: high }
     'algm:FileSystemAnalysis':
       { severity: normal }
     # D8
@@ -58,5 +60,4 @@ policies:
         }
       }
 include:
-  - securityheaders
   - d8_security_review

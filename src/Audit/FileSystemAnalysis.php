@@ -7,7 +7,6 @@ use Drutiny\Annotation\Param;
 use Drutiny\Annotation\Token;
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
-use Exception;
 
 /**
  *  Filesystem analysis.
@@ -64,7 +63,7 @@ class FileSystemAnalysis extends Audit {
     }
 
     $disk = array_map(function($line) {
-      $elements=preg_split('/\s+/',$line);
+      $elements = preg_split('/\s+/', $line);
 
       return([
         'filesystem' => isset($elements[0]) ? $elements[0] : '',
@@ -74,7 +73,7 @@ class FileSystemAnalysis extends Audit {
         'use%' => isset($elements[4]) ? $elements[4] : '',
         'mounted' => isset($elements[5]) ? $elements[5] : '',
       ]);
-    },explode("\n",$output));
+    }, explode("\n",$output));
 
     $columns = ['Fs', 'Size', 'Used', 'Avail.', 'Use%'];
     $rows = [];
@@ -95,8 +94,6 @@ class FileSystemAnalysis extends Audit {
     $rendered_table_markdown = $md_table->render();
 
     $sandbox->setParameter('filesystem', $rendered_table_markdown);
-
-
 
     if ($size < $max_size) {
       return Audit::SUCCESS;
