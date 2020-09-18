@@ -8,14 +8,14 @@ use Drutiny\Annotation\Token;
 use Drutiny\algm\Utils\MarkdownTableGenerator;
 
 /**
- * Look for contrib modules with available updates.
+ * Uses composer to look for contrib modules with available updates.
  * @Token(
  *  name = "updates",
  *  type = "array",
  *  description = "Description of module updates available."
  * )
  */
-class D9ModuleUpdateStatus extends Audit {
+class ModuleUpdateStatus extends Audit {
 
   /**
    * @inheritdoc

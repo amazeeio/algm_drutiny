@@ -6,7 +6,7 @@ policies:
       { severity: high }
     'algm:DrushStatus':
       { severity: normal }
-    'algm:D9ModuleUpdates':
+    'algm:ModuleUpdates':
       { severity: high }
     'algm:D8SecurityModuleUpdates':
       { severity: high }

@@ -23,7 +23,7 @@ class PageSpeedInsightsScore extends TestCase {
 
   /** @test */
   public function it_should_run_a_psi_scan_against_a_site() {
-    $policy = Policy::load('ALGMPerformance:PSI');
+    $policy = Policy::load('algm:Performance:PSI');
     $sandbox = new Sandbox($this->target, $policy);
 
     $response = $sandbox->run();

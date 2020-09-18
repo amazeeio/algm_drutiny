@@ -1,6 +1,6 @@
 title: "Page Speed Insights policy"
 class: \Drutiny\algm\Audit\PageSpeedInsightsScore
-name: ALGMPerformance:PSI
+name: algm:Performance:PSI
 description: |
   Runs PSI against LAGOON_ROUTE
 success: |

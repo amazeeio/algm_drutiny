@@ -1,7 +1,8 @@
-title: "Drupal 9 Module Updates policy"
-class: \Drutiny\algm\Audit\D9ModuleUpdateStatus
-name: algm:D9ModuleUpdates
+title: "Drupal 8/9 Module Updates"
+class: \Drutiny\algm\Audit\ModuleUpdateStatus
+name: algm:ModuleUpdates
 tags:
+  - Drupal 8
   - Drupal 9
   - Module Updates
   - Security

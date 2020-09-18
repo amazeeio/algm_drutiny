@@ -1,0 +1,20 @@
+title: "SA-CORE-2020-009"
+class: \Drutiny\algm\Audit\D8_SA_CORE_2020_009
+name: Drupal-8:SA-CORE-2020-009
+tags:
+  - Drupal 8
+  - Security
+description: |
+  Runs tests to check for SA-CORE-2020-0079 (https://www.drupal.org/sa-core-2020-009).
+
+  Core Drupal 8 reflected XSS vulnerability.
+remediation: |
+  If you are using Drupal 8.8.x, upgrade to Drupal 8.8.10.
+  If you are using Drupal 8.9.x, upgrade to Drupal 8.9.6.
+success: This site is secure from the vulnerabilities in SA-CORE-2020-009
+failure: This sites current Drupal version {{current_version}} is not secure against SA-CORE-2020-009.
+parameters:
+  module:
+    default: system
+  version:
+    default: 8.9.6

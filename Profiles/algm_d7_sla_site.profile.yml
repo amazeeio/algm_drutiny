@@ -6,11 +6,11 @@ policies:
       { severity: high }
     'algm:DrushStatus':
       { severity: normal }
-    'algm:D7SecurityModuleUpdates':
-      { severity: high }
     'algm:FileSystemAnalysis':
       { severity: normal }
-    # D7
+    # General
+    'Drupal:moduleUpdates': { severity: normal }
+    # Drupal 7
     'Drupal-7:NoDuplicateModules': { severity: normal }
     'Drupal-7:OverlayModuleDisabled': { severity: normal }
     'Drupal-7:BlackListPermissions': { severity: normal }
@@ -34,6 +34,7 @@ policies:
     'Database:Size': { severity: normal }
     # Security
     'Drupal-7:User1LockDown': { severity: normal }
+    'algm:D7SecurityModuleUpdates': { severity: high }
     'fs:SensitivePublicFiles':
       {
         severity: high,

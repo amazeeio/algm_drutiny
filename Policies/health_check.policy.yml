@@ -1,4 +1,4 @@
-title: "Health Check Policy"
+title: "Health Check"
 class: \Drutiny\algm\Audit\HealthCheck
 name: algm:HealthCheck
 description: |

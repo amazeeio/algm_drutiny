@@ -1,0 +1,18 @@
+title: "SA-CORE-2020-007"
+class: \Drutiny\algm\Audit\ModuleVersion
+name: Drupal-7:SA-CORE-2020-007
+tags:
+  - Drupal 7
+  - Security
+description: |
+  Runs tests to check for SA-CORE-2020-007 (https://www.drupal.org/sa-core-2020-007).
+
+  The Drupal AJAX API does not disable JSONP by default, which can lead to cross-site scripting.
+remediation: Upgrade Drupal 7 to 7.73
+success: This site is secure from the vulnerabilities in SA-CORE-2020-007
+failure: This sites current Drupal version {{current_version}} is not secure against SA-CORE-2020-007.
+parameters:
+  module:
+    default: system
+  version:
+    default: 7.73
