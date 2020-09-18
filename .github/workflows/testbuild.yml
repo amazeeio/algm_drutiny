@@ -1,4 +1,4 @@
-name: Testing build - no release 
+name: Testing build - no release
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
 
       - name: Build Drutiny Phar
         id: drutiny-build
-        uses: AmazeeLabs/drutiny_build_github_action@v0.0.2
+        uses: AmazeeLabs/drutiny_build_github_action@v0.0.3
         with:
           tag-ref: ${{ steps.get-tag.outputs.tag }}
           composer-packages: "bomoko/algm_drutiny_profile:dev-master, bomoko/lagoon-formatter:dev-master"
@@ -32,4 +32,3 @@ jobs:
         with:
           name: phar
           path: "**/*drutiny*.phar"
-
