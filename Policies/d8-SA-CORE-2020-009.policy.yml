@@ -18,3 +18,4 @@ parameters:
     default: system
   version:
     default: 8.9.6
+severity: 'critical'

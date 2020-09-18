@@ -16,3 +16,4 @@ parameters:
     default: system
   version:
     default: 7.73
+severity: 'critical'
