@@ -6,6 +6,7 @@ use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
 use Drutiny\Annotation\Token;
 use Drutiny\algm\Utils\MarkdownTableGenerator;
+use Exception;
 
 /**
  * Uses composer to look for contrib modules with available updates.
@@ -21,7 +22,13 @@ class ModuleUpdateStatus extends Audit {
    * @inheritdoc
    */
   public function audit(Sandbox $sandbox) {
-    $output = $sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drupal/*" -o --no-cache --format=json 2> /dev/null && echo \'\'');
+    try {
+      $output = $sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drupal/*" -o --no-cache --format=json 2> /dev/null && echo \'\'');
+    }
+    catch (Exception $e) {
+      throw new \Exception("Composer command failed: " . $e);
+      return Audit::ERROR;
+    }
 
     $modules = json_decode($output, TRUE);
     if ($modules === null) {

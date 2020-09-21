@@ -1,17 +1,11 @@
-title: 'ALGM SLA audit'
-description: 'This audit is for sites which are under the ALGM SLA'
+title: 'ALGM Drupal 8 & 9 SLA audit'
+description: 'This audit is for Drupal 8 & Drupal 9 sites which are under the ALGM SLA'
 policies:
-    # ALGM specific
-    'algm:HealthCheck':
-      { severity: high }
-    'algm:DrushStatus':
-      { severity: normal }
-    'algm:ModuleUpdates':
-      { severity: high }
-    'algm:D8SecurityModuleUpdates':
-      { severity: high }
-    'algm:FileSystemAnalysis':
-      { severity: normal }
+    # General
+    'algm:HealthCheck': { severity: high }
+    'algm:DrushStatus': { severity: normal }
+    'algm:FileSystemAnalysis': { severity: normal }
+    'algm:ModuleUpdates': { severity: high }
     # D8
     'Drupal-8:CronLast': { severity: normal }
     'Drupal-8:JsAggregation': { severity: normal }
@@ -27,7 +21,8 @@ policies:
     # FS and Database
     'fs:largeFiles': { severity: normal }
     'fs:DrupalThemeDirectory':
-      { severity: normal,
+      {
+        severity: normal,
         parameters: {
           path: '/app/web/themes/custom/',
           max_size: 50
@@ -35,7 +30,8 @@ policies:
       }
     'Drupal:largeFiles': { severity: normal }
     'Drupal:updates':
-      { severity: normal,
+      {
+        severity: normal,
         parameters: {
           max_size: 1000,
           warning_size: 250
@@ -44,6 +40,7 @@ policies:
     'Database:Fulltext': { severity: normal }
     'Database:Size': { severity: normal }
     # Security
+    'algm:Security:D8SecurityModuleUpdates': { severity: high }
     'fs:SensitivePublicFiles':
       {
         severity: high,
@@ -53,7 +50,8 @@ policies:
       }
     'Drupal-8:UserRegistrationAdminOnly': { severity: normal }
     'Drupal-8:User1LockDown':
-      { severity: high,
+      {
+        severity: high,
         parameters: {
           blacklist: 'admin, root, drupa, amazee, amazeelabs, zhadmin',
           status: 1

@@ -1,6 +1,6 @@
 title: "Drupal 7 Security Module Updates policy"
 class: \Drutiny\algm\Audit\D7SecurityModuleUpdates
-name: algm:D7SecurityModuleUpdates
+name: algm:Security:D7SecurityModuleUpdates
 tags:
   - Drupal 7
   - Security
@@ -12,6 +12,7 @@ description: |
 success: No security updates were found.
 failure: >-
   {{ updates }}
+remediation: Review the security modules listed and update accordingly.
 warning: |
   There are modules with available updates. Please consider upgrading as it
   reduces the chance of introducing regressions when more urgent security updates

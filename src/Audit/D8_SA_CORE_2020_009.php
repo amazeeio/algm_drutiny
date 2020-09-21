@@ -60,7 +60,6 @@ class D8_SA_CORE_2020_009 extends Audit {
       return Audit::ERROR;
     }
 
-
     if (!isset($info[$module])) {
       return Audit::NOT_APPLICABLE;
     }

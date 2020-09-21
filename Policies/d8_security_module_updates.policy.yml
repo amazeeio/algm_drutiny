@@ -1,6 +1,6 @@
 title: "Drupal 8/9 Security Module Updates"
 class: \Drutiny\algm\Audit\D8SecurityModuleUpdates
-name: algm:D8SecurityModuleUpdates
+name: algm:Security:D8SecurityModuleUpdates
 tags:
   - Drupal 9
   - Drupal 8
@@ -13,6 +13,7 @@ description: |
 success: No security updates were found.
 failure: >-
   {{ updates }}
+remediation: Review the security modules listed and update accordingly.
 warning: |
   There are modules with available updates. Please consider upgrading as it
   reduces the chance of introducing regressions when more urgent security updates
