@@ -18,3 +18,4 @@ warning: |
   There are modules with available updates. Please consider upgrading as it
   reduces the chance of introducing regressions when more urgent security updates
   are required.
+severity: 'high'

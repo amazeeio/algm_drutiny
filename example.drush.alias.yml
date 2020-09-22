@@ -1,0 +1,27 @@
+prod:
+  host: ssh.lagoon.amazeeio.cloud
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+  root: /app/web
+  uri: https://www.paraplegie.ch
+  user: paraplegie-ch-prod
+  remote-host: ssh.lagoon.amazeeio.cloud
+  remote-user: paraplegie-ch-prod
+  # drush-version: 8.3.2
+  ssh-options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+pre-prod:
+  host: ssh.lagoon.amazeeio.cloud
+  user: paraplegie-ch-pre-prod
+  root: /app/web
+  remote-host: ssh.lagoon.amazeeio.cloud
+  remote-user: paraplegie-ch-pre-prod
+  # drush-version: 8.3.2
+  ssh-options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+dev:
+  host: ssh.lagoon.amazeeio.cloud
+  user: paraplegie-ch-dev
+  root: /app/web
+  remote-host: ssh.lagoon.amazeeio.cloud
+  remote-user: paraplegie-ch-dev
+  # drush-version: 8.3.2
+  ssh-options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
