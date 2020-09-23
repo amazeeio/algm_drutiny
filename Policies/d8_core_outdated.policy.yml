@@ -1,0 +1,22 @@
+title: "D8 Core Outdated"
+class: \Drutiny\algm\Audit\D8CoreOutdated
+name: algm:D8CoreOutdated
+tags:
+  - Drupal 8
+  - Core
+  - Security
+description: |
+  Check if Drupal is at upd to date.
+remediation: |
+  If you are using Drupal 8.7.x, upgrade to Drupal 8.8.10.
+  If you are using Drupal 8.8.x, upgrade to Drupal 8.8.10.
+  If you are using Drupal 8.9.x, upgrade to Drupal 8.9.6.
+  If you are using Drupal 9.0.x, upgrade to Drupal 9.0.6.
+success: |
+  {{ status }}
+failure: |
+  {{ status }}
+parameters:
+  minsupportversion:
+    default: 8.8
+severity: 'critical'

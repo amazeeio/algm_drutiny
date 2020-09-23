@@ -1,0 +1,15 @@
+title: "D8 Drush Outdated"
+class: \Drutiny\algm\Audit\D8DrushOutdated
+name: algm:D8DrushOutdated
+tags:
+  - Drupal 8
+  - Drush
+description: |
+  Check if Drush is at the latest version.
+success: |
+  {{ status }}
+parameters:
+  minsupportversion:
+    default: 8
+failure: |
+  {{ status }}
