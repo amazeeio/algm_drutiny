@@ -15,7 +15,6 @@ use Drutiny\Annotation\Param;
  *  description = "The versions bellow that are not supported",
  *  type = "string"
  * )
- *
  * @Token(
  *  name = "status",
  *  type = "string",
