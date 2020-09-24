@@ -6,6 +6,7 @@ use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
 use Drutiny\Annotation\Token;
 use Drutiny\Annotation\Param;
+use Drutiny\Target\DrushTarget;
 
 /**
  * Simple Drush Status test.
@@ -54,6 +55,16 @@ class D8CoreOutdated extends Audit {
   }
 
   /**
+   * Check that target is actually a DrushTarget
+   *
+   * @param Sandbox $sandbox
+   * @return void
+   */
+  protected function requireDrushTarget(Sandbox $sandbox){
+    return $sandbox->getTarget() instanceof DrushTarget;
+  }
+
+  /**
    * @inheritdoc
    */
   public function audit(Sandbox $sandbox) {
@@ -83,12 +94,17 @@ class D8CoreOutdated extends Audit {
     }
 
     try {
-      $output = json_decode($sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drupal/core" --all --format=json'), TRUE);
+      $output = $sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drupal/core" --all --format=json');
     }
     catch (\Exception $e) {
       throw new \Exception("Composer command failed: " . $e);
       return Audit::ERROR;
     }
+
+    if ($output === NULL) {
+      return Audit::ERROR;
+    }
+    $output = json_decode($output, TRUE);
 
     // Do some filtering and transformation here.
     $versions = $output['versions'];
@@ -112,7 +128,6 @@ class D8CoreOutdated extends Audit {
         break;
       }
     }
-    reset($versions);
 
     if ($latest_version !== $current_drupal) {
       $msg = "You are NOT using the latest version of Drupal core" . PHP_EOL;

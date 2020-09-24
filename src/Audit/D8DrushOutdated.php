@@ -6,6 +6,7 @@ use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
 use Drutiny\Annotation\Token;
 use Drutiny\Annotation\Param;
+use Drutiny\Target\DrushTarget;
 
 /**
  * Simple Drush Status test.
@@ -54,11 +55,13 @@ class D8DrushOutdated extends Audit {
   }
 
   /**
+   * Check that target is actually a DrushTarget
    *
+   * @param Sandbox $sandbox
+   * @return void
    */
-  protected function requireContext(Sandbox $sandbox) {
-    // TODO: put any checks for required context here.
-    return TRUE;
+  protected function requireDrushTarget(Sandbox $sandbox){
+    return $sandbox->getTarget() instanceof DrushTarget;
   }
 
   /**
@@ -90,21 +93,19 @@ class D8DrushOutdated extends Audit {
     }
 
     try {
-      $output = $sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drush/drush" --all');
+      $output = $sandbox->exec('COMPOSER_MEMORY_LIMIT=-1 composer show "drush/drush" --all --format=json');
     }
     catch (\Exception $e) {
       throw new \Exception("Composer command failed: " . $e);
       return Audit::ERROR;
     }
 
-    $lines = explode(PHP_EOL, $output);
-    $lines = array_map('trim', $lines);
-    foreach ($lines as $line) {
-      if (strpos($line, 'versions :') !== FALSE) {
-        $versions = preg_split('/\s+/', $line);
-      }
+    if ($output===NULL) {
+      return Audit::ERROR;
     }
 
+    $output = json_decode($output, TRUE);
+    $versions = $output['versions'];
     // Do some filtering and transformation here.
     $versions = array_filter($versions, [$this, 'versionsFilter']);
     $versions = array_map([$this, 'cleanVersionLines'], $versions);
@@ -133,7 +134,6 @@ class D8DrushOutdated extends Audit {
         break;
       }
     }
-    reset($versions);
 
     if ($latest_version !== $current_drush) {
       $msg = "You are NOT using the latest version of Drush" . PHP_EOL;
