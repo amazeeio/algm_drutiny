@@ -21,6 +21,11 @@ use Drutiny\Target\DrushTarget;
  *  type = "string",
  *  description = "Compares the installed version of drush with the latest available version"
  * )
+ * @Token(
+ *  name = "warning_message",
+ *  type = "string",
+ *  description = "A warning message to show when Audit::WARNING is returned"
+ * )
  */
 class D8DrushOutdated extends Audit {
 
@@ -52,6 +57,26 @@ class D8DrushOutdated extends Audit {
    */
   private function cleanVersionLines($line) {
     return preg_replace('/,/', '', $line);
+  }
+
+  /**
+   * Returns the latest version of a subversion
+   *
+   * @param array $versions
+   *  A sorted array using semantic version sort
+   * @param array $subversion
+   *  A subversion to compare with
+   * @return string
+   */
+  private function extractLatestVersion($versions, $subversion) {
+    $latest_version = NULL;
+    foreach ($versions as $version) {
+      if (strpos(trim($version), $subversion) === 0) {
+        $latest_version = $version;
+        break;
+      }
+    }
+    return $latest_version;
   }
 
   /**
@@ -112,8 +137,6 @@ class D8DrushOutdated extends Audit {
     // Just in case sort.
     $versions = call_user_func("Composer\Semver\Semver::$method", $versions);
 
-    $ver = substr($current_drush, 0, 2);
-
     // Drupal core 8.4+ requires Drush 9
     // Drush 8 it is supported but not recommended.
     $notification_drush_9 = FALSE;
@@ -124,17 +147,13 @@ class D8DrushOutdated extends Audit {
 
     if (call_user_func("Composer\Semver\Comparator::$comparator_method", $current_drush, $min_support_version)) {
       $summary = "You are using an unsupported version ($current_drush) of Drush" . PHP_EOL;
+      $summary .= "Advise is to update to at least Drush " . $this->extractLatestVersion($versions,'8') . PHP_EOL;
       $sandbox->setParameter('status', trim($summary));
       return Audit::FAILURE;
     }
 
-    foreach ($versions as $version) {
-      if (strpos(trim($version), $ver) === 0) {
-        $latest_version = $version;
-        break;
-      }
-    }
-
+    $subver = substr($current_drush, 0, 2);
+    $latest_version = $this->extractLatestVersion($versions,$subver);
     if ($latest_version !== $current_drush) {
       $msg = "You are NOT using the latest version of Drush" . PHP_EOL;
     }
@@ -151,7 +170,8 @@ class D8DrushOutdated extends Audit {
     }
 
     if ($notification_drush_9) {
-      $summary .= PHP_EOL . "It's strongly recommended to update to Drush 9." . PHP_EOL;
+      $msg = "While the audit pass, it's strongly recommended to update to Drush 9.";
+      $sandbox->setParameter('warning_message', $msg);
     }
 
     $sandbox->setParameter('status', trim($summary));
@@ -160,7 +180,7 @@ class D8DrushOutdated extends Audit {
       return Audit::FAILURE;
     }
 
-    return Audit::SUCCESS;
+    return $notification_drush_9 ? Audit::WARNING : Audit::SUCCESS;
   }
 
 }

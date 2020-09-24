@@ -8,6 +8,8 @@ description: |
   Check if Drush is at the latest version.
 success: |
   {{ status }}
+warning: |
+  {{ warning_message }}
 parameters:
   minsupportversion:
     default: 8

@@ -16,6 +16,8 @@ success: |
   {{ status }}
 failure: |
   {{ status }}
+warning: |
+  {{ warning_message }}
 parameters:
   minsupportversion:
     default: 8.8

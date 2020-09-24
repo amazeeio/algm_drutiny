@@ -21,6 +21,11 @@ use Drutiny\Target\DrushTarget;
  *  type = "string",
  *  description = "Compares the installed version of drush with the latest available version"
  * )
+ * @Token(
+ *  name = "warning_message",
+ *  type = "string",
+ *  description = "To be used: A warning message to show when Audit::WARNING is returned"
+ * )
  */
 class D8CoreOutdated extends Audit {
 
@@ -55,6 +60,26 @@ class D8CoreOutdated extends Audit {
   }
 
   /**
+   * Returns the latest version of a subversion
+   *
+   * @param array $versions
+   *  A sorted array using semantic version sort
+   * @param array $subversion
+   *  A subversion to compare with
+   * @return string
+   */
+  private function extractLatestVersion($versions, $subversion) {
+    $latest_version = NULL;
+    foreach ($versions as $version) {
+      if (strpos(trim($version), $subversion) === 0) {
+        $latest_version = $version;
+        break;
+      }
+    }
+    return $latest_version;
+  }
+
+  /**
    * Check that target is actually a DrushTarget
    *
    * @param Sandbox $sandbox
@@ -78,7 +103,6 @@ class D8CoreOutdated extends Audit {
     }
 
     $current_drupal = isset($config['drupal-version']) ? $config['drupal-version'] : NULL;
-
     if (!$current_drupal) {
       return Audit::ERROR;
     }
@@ -121,14 +145,8 @@ class D8CoreOutdated extends Audit {
       return Audit::FAILURE;
     }
 
-    $ver = substr($current_drupal, 0, 3);
-    foreach ($versions as $version) {
-      if (strpos(trim($version), $ver) === 0) {
-        $latest_version = $version;
-        break;
-      }
-    }
-
+    $subver = substr($current_drupal, 0, 3);
+    $latest_version = $this->extractLatestVersion($versions,$subver);
     if ($latest_version !== $current_drupal) {
       $msg = "You are NOT using the latest version of Drupal core" . PHP_EOL;
     }
