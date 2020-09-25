@@ -91,14 +91,12 @@ If json format is given, drutiny will parse the response and return the output i
 An example Drush 9 alias file:
 
 ```
-site-prod:
+prod:
   host: ssh.lagoon.amazeeio.cloud
-  ssh:
-    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
   root: /app/web
-  user: sonova-d8-prod
+  user: site-prod
   remote-host: ssh.lagoon.amazeeio.cloud
-  remote-user: sonova-d8-prod
+  remote-user: site-prod
   ssh-options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
 ```
 
