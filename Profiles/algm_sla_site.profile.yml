@@ -29,14 +29,7 @@ policies:
         }
       }
     'Drupal:largeFiles': { severity: normal }
-    'Drupal:updates':
-      {
-        severity: normal,
-        parameters: {
-          max_size: 1000,
-          warning_size: 250
-        }
-      }
+    'Drupal:updates': { severity: normal }
     'Database:Fulltext': { severity: normal }
     'Database:Size': { severity: normal }
     # Security
