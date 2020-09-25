@@ -1,5 +1,28 @@
 <?php
 
+/**
+ * Notes: The comparison follow the principles of Semantic Versioning 2.0.0.
+ * We compare the current installed version of Drush in the format MAJOR.MINOR.
+ * Examples (versions as of Sep.2020):
+ *   #1
+ *   Drush installed version: 8.1 , then latest version is 8.4.2
+ *   Audit fails in that case. Also v10.3.4 is displayed to the user.
+ *
+ *   #2
+ * - Drush installed version: 9.5.0 , then latest version is 9.5.2
+ *   Audit fails in that case. Also v10.3.4 is displayed to the user as well.
+ *
+ *   #3
+ * - Drush installed version: 8.4.2 , then latest version is 8.4.2. Drupal core is at 8.8.
+ *   Audit returns a warning (success + warning) to update to Drush 9.
+ *
+ *   #4
+ * - Drush installed version: 7.4.0 , then latest (least) version is 8.4.2.
+ *   Audit fails (Drush 7 in core 8 is unsupported).
+ *
+ *  We do not count alpha, beta, rc and dev releases.
+ */
+
 namespace Drutiny\algm\Audit;
 
 use Drutiny\Audit;

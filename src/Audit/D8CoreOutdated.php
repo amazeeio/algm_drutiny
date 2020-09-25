@@ -1,5 +1,27 @@
 <?php
 
+
+/**
+ * Notes: The comparison follow the principles of Semantic Versioning 2.0.0.
+ * We compare the current installed version of Drupal core in the format MAJOR.MINOR.
+ *
+ * Examples (versions as of Sep.2020):
+ *   #1
+ *   Core installed version: 9.0 , then latest version is 9.0.6
+ *   Audit fails in that case.
+ *
+ *   #2
+ * - Core installed version: 8.8.10 , latest version is 8.8.10
+ *   Audit succeed.
+ *
+ *   #3
+ * - Core installed version: 8.7.13.
+ *   Audit fails, versions prior to 8.8 are not supported.
+ *   (see also minsupportversion param)
+ *
+ *  We do not count alpha, beta, rc and dev releases.
+ */
+
 namespace Drutiny\algm\Audit;
 
 use Drutiny\Audit;
