@@ -2,51 +2,51 @@ title: 'ALGM Drupal 8 & 9 SLA audit'
 description: 'This audit is for Drupal 8 & Drupal 9 sites which are under the ALGM SLA'
 policies:
   # General
-  'algm:HealthCheck': { severity: high }
-  'algm:DrushStatus': { severity: normal }
-  'algm:FileSystemAnalysis': { severity: normal }
+  'algm:HealthCheck': { severity: critical }
+  'algm:DrushStatus': { severity: medium }
+  #'algm:FileSystemAnalysis': { severity: medium }
   'algm:ModuleUpdates': { severity: high }
   # D8
-  'Drupal-8:CronLast': { severity: normal }
-  'Drupal-8:CronHasRun': { severity: normal }
-  'Drupal-8:NoAutomatedCron': { severity: normal }
-  'Drupal-8:JsAggregation': { severity: normal }
-  'Drupal-8:CssAggregation': { severity: normal }
-  'Drupal-8:KintDisabled': { severity: normal }
-  'Drupal-8:DblogDisabled': { severity: normal }
-  'Drupal-8:DevelDisabled': { severity: normal }
-  'Drupal-8:ShieldDisabled': { severity: normal }
-  'Drupal-8:StatisticsDisabled': { severity: normal }
-  'Drupal-8:DuplicateModules': { severity: normal }
-  'Drupal-8:ErrorLevel': { severity: normal }
-  'Drupal-8:Fast404Enabled': { severity: normal }
-  'Drupal-8:ContentOwnedByAnonymous': { severity: normal }
-  'Drupal-8:PageCacheExpiry': { severity: normal }
+  'Drupal-8:CronLast': { severity: medium }
+  'Drupal-8:CronHasRun': { severity: medium }
+  'Drupal-8:NoAutomatedCron': { severity: medium }
+  'Drupal-8:JsAggregation': { severity: medium }
+  'Drupal-8:CssAggregation': { severity: medium }
+  'Drupal-8:KintDisabled': { severity: medium }
+  'Drupal-8:DblogDisabled': { severity: medium }
+  'Drupal-8:DevelDisabled': { severity: medium }
+  'Drupal-8:ShieldDisabled': { severity: medium }
+  'Drupal-8:StatisticsDisabled': { severity: medium }
+  'Drupal-8:DuplicateModules': { severity: medium }
+  'Drupal-8:ErrorLevel': { severity: medium }
+  'Drupal-8:Fast404Enabled': { severity: medium }
+  'Drupal-8:ContentOwnedByAnonymous': { severity: medium }
+  'Drupal-8:PageCacheExpiry': { severity: medium }
   # FS and Database
-  'fs:largeFiles': { severity: normal }
+  'fs:largeFiles': { severity: medium }
   'fs:DrupalThemeDirectory':
     {
-      severity: normal,
+      severity: medium,
       parameters: {
         path: '/app/web/themes/custom/',
         max_size: 50
       }
     }
-  'Drupal:largeFiles': { severity: normal }
-  'Drupal:updates': { severity: normal }
-  'Database:Fulltext': { severity: normal }
-  'Database:Size': { severity: normal }
+  'Drupal:largeFiles': { severity: medium }
+  'Drupal:updates': { severity: medium }
+  'Database:Fulltext': { severity: medium }
+  'Database:Size': { severity: medium }
   # Security
   'algm:Security:D8SecurityModuleUpdates': { severity: high }
-  'Drupal-8:ConfigDevelDisabled': { severity: normal }
-  'Drupal-8:NoBackupAndMigrate': { severity: normal }
-  'Drupal-8:NoExperimental': { severity: normal }
-  'Drupal-8:PhpDisabled': { severity: normal }
-  'Drupal-8:SimpleTestDisabled': { severity: normal }
-  'Drupal-8:UnusedModules': { severity: normal }
-  'Drupal-8:UpdateDisabled': { severity: normal }
-  'Drupal-8:UserRegistrationAdminOnly': { severity: normal }
-  'Drupal-8:WebprofilerDisabled': { severity: normal }
+  'Drupal-8:ConfigDevelDisabled': { severity: medium }
+  'Drupal-8:NoBackupAndMigrate': { severity: medium }
+  'Drupal-8:NoExperimental': { severity: medium }
+  'Drupal-8:PhpDisabled': { severity: medium }
+  'Drupal-8:SimpleTestDisabled': { severity: medium }
+  'Drupal-8:UnusedModules': { severity: medium }
+  'Drupal-8:UpdateDisabled': { severity: medium }
+  'Drupal-8:UserRegistrationAdminOnly': { severity: medium }
+  'Drupal-8:WebprofilerDisabled': { severity: medium }
   'fs:SensitivePublicFiles':
     {
       severity: high,
