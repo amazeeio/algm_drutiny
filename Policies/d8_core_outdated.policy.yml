@@ -6,7 +6,7 @@ tags:
   - Core
   - Security
 description: |
-  Check if Drupal is at upd to date.
+  Check if Drupal is up to date.
 remediation: |
   If you are using Drupal 8.7.x, upgrade to Drupal 8.8.10.
   If you are using Drupal 8.8.x, upgrade to Drupal 8.8.10.
