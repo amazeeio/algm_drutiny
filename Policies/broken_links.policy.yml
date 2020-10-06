@@ -1,0 +1,17 @@
+title: "Broken links"
+class: \Drutiny\algm\Audit\BrokenLinks
+name: algm:BrokenLinks
+tags:
+  - Links
+  - SEO
+description: |
+  Check if Drupal website has broken links.
+success: |
+  {{ status }}
+failure: |
+  {{ status }}
+warning: |
+  {{ warning_message }}
+parameters:
+  depth:
+    default: 2
