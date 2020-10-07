@@ -36,6 +36,18 @@ class D8SecurityModuleUpdates extends Audit {
     return substr($drush_version, 0, 1 ) === "9";
   }
 
+  public function getJsonStringBetween($string, $start, $end) {
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+
+    if ($ini == 0) return '';
+
+    $ini += strlen($start);
+    $last = strrpos($string, $end);
+    $len = ($last - $ini) + 1;
+    return substr($string, $ini -1, $len +1);
+  }
+
   /**
    * @inheritdoc
    */
@@ -45,11 +57,9 @@ class D8SecurityModuleUpdates extends Audit {
     $drush_version = $this->getDrushVersion($sandbox);
     $modules = [];
 
-
     if ($this->isDrush8($drush_version)) {
       try {
-        $modules = $sandbox->exec('drush pm-updatestatus --security-only --full --format=json');
-
+        $modules = $sandbox->exec('drush pm-updatestatus --security-only --full --format=json 2> /dev/null');
         if ($modules === '') {
           $sandbox->setParameter('updates', 'No security modules to update.');
           return Audit::SUCCESS;
@@ -76,8 +86,14 @@ class D8SecurityModuleUpdates extends Audit {
       return Audit::SUCCESS;
     }
 
-    $modules = json_decode($modules, TRUE);
-    if ($modules === null) {
+
+    $parsed_json = $this->getJsonStringBetween($modules, '{', '}');
+    // $clean_json = preg_match_all('{(?:[^{}]*|(?R))*}', $parsed_json, $matches);
+    $json_modules = json_decode($parsed_json, TRUE);
+
+    // If not valid json
+    if ($json_modules === null) {
+      throw new \Exception("Non valid json returned");
       return AUDIT::ERROR;
     }
 
@@ -91,7 +107,7 @@ class D8SecurityModuleUpdates extends Audit {
           'status_msg' => isset($module['status_msg']) ? $module['status_msg'] : '',
           'link' => isset($module['link']) ? $module['link'] : '',
         ]);
-      }, $modules);
+      }, $json_modules);
 
       $columns = ['Name', 'Current Version', 'Recommended', 'Status', 'Link'];
       $rows = [];
