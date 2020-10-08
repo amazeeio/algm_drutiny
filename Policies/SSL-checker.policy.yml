@@ -1,0 +1,18 @@
+title: "SSL Checker"
+class: \Drutiny\algm\Audit\SSLChecker
+name: algm:SSLChecker
+tags:
+  - Drupal 8
+  - Security
+description: |
+  Runs tests to check SSL certificates.
+success: |
+  {{ status }}
+failure: |
+  {{ status }}
+warning: |
+  {{ warning_message }}
+parameters:
+  warning_days:
+    default: 30
+severity: 'critical'
