@@ -1,0 +1,17 @@
+title: "Cron running regularly"
+name: algm:D7CronHasRun
+class: \Drutiny\algm\Audit\D7CronHasRun
+tags:
+  - Drupal 7
+  - Cron
+description: |
+  Making sure the cron jobs are running properly is key to a healthy Drupal site.
+success: |
+  Success: Cron did run on {{ cron_last }}
+failure: |
+  Warning: Cron didn't run since {{ cron_last }}
+parameters:
+  cron_max_interval:
+    default: .
+    type: string
+    description: The maximum interval between two crons.
