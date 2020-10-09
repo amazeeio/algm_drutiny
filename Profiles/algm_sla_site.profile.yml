@@ -8,12 +8,12 @@ policies:
   'algm:ModuleUpdates': { severity: high }
   # Change the cron_max_interval param with your "between crons" period, default set to 24h.
   'Drupal-8:CronHasRun':
-  {
-    severity: medium,
-    parameters: {
-      cron_max_interval: '86400'
+    {
+      severity: medium,
+      parameters: {
+        cron_max_interval: '86400'
+      }
     }
-  }
   'Drupal-8:NoAutomatedCron': { severity: medium }
   'Drupal-8:JsAggregation': { severity: medium }
   'Drupal-8:CssAggregation': { severity: medium }
