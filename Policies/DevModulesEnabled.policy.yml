@@ -1,0 +1,11 @@
+title: "Dev Modules enabled"
+name: algm:DevModulesEnabled
+class: \Drutiny\algm\Audit\DevModulesEnabled
+tags:
+  - Dev
+description: |
+  Making sure no dev modules are enabled on prod.
+success: |
+  Success: No dev modules enabled.
+failure: |
+  Warning: There are some dev modules enabled: {{ modules }}, please check they are not enabled in production mode.
