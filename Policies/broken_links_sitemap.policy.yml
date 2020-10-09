@@ -1,0 +1,14 @@
+title: "Broken links Sitemap"
+class: \Drutiny\algm\Audit\BrokenLinksSitemap
+name: algm:BrokenLinksSitemap
+tags:
+  - Links
+  - SEO
+description: |
+  Check if Drupal website has broken links on sitemap.xml file.
+success: |
+  {{ status }}
+failure: |
+  {{ status }}
+warning: |
+  {{ warning_message }}
