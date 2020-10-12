@@ -39,7 +39,7 @@
           "version": "1.0",
           "source": {
             "url": "https://github.com/AmazeeLabs/algm_drutiny.git",
-            "type": "vcs",
+            "type": "git",
             "reference": "origin/master"
           }
         }
