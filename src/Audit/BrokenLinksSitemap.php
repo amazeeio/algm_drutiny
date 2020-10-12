@@ -91,7 +91,6 @@ class BrokenLinksSitemap extends Audit {
           $time_start = microtime(true);
           foreach ($items as $item) {
             $s = $this->checkUrl($item['loc']);
-            print $item['loc'] . ' => ' . $s . PHP_EOL;
             if ($s !== 200) {
               $broken_links[] = [ 'uri' => $item['loc'], 'status' => $s];
             }
