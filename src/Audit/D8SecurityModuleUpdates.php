@@ -122,7 +122,7 @@ class D8SecurityModuleUpdates extends Audit {
           'name' => isset($module['name']) ? $module['name'] : '',
           'version' => isset($module['version']) ? $module['version'] : '',
         ]);
-      }, $modules);
+      }, $json_modules);
 
       $columns = ['Name', 'Current Version'];
       $rows = [];
