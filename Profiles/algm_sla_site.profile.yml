@@ -67,3 +67,5 @@ policies:
         status: 1
       }
     }
+# include:
+#   - security_headers
