@@ -1,43 +1,36 @@
 title: 'ALGM Drupal 7 SLA audit'
 description: 'This audit is for Drupal 7 sites which are under the ALGM SLA'
 policies:
-    # General
-    'algm:HealthCheck': { severity: high }
-    'algm:DrushStatus': { severity: normal }
-    'algm:FileSystemAnalysis': { severity: normal }
-    'Drupal:moduleUpdates': { severity: normal }
-    # Drupal 7
-    'Drupal-7:NoDuplicateModules': { severity: normal }
-    'Drupal-7:OverlayModuleDisabled': { severity: normal }
-    'Drupal-7:BlackListPermissions': { severity: normal }
-    'Drupal-7:PhpModuleDisabled': { severity: normal }
-    'Drupal-7:SimpletestModuleDisabled': { severity: normal }
-    'Drupal-7:StatisticsModuleDisabled': { severity: normal }
-    'Drupal-7:UpdateModuleDisabled': { severity: normal }
-    'Drupal-7:XMLSitemapBaseURL': { severity: normal }
-    'Drupal-7:ZenRegistryRebuild': { severity: normal }
-    # FS and Database
-    'fs:largeFiles': { severity: normal }
-    'Drupal:largeFiles': { severity: normal }
-    'Drupal:updates':
-      {
-        severity: normal,
-        parameters: {
-          max_size: 1000,
-          warning_size: 250
-        }
+  # General
+  'algm:HealthCheck': { severity: high }
+  'algm:DrushStatus': { severity: normal }
+  #'algm:FileSystemAnalysis': { severity: normal }
+  'Drupal:moduleUpdates': { severity: normal }
+  # Drupal 7
+  'Drupal-7:NoDuplicateModules': { severity: normal }
+  'Drupal-7:OverlayModuleDisabled': { severity: normal }
+  'Drupal-7:BlackListPermissions': { severity: normal }
+  'Drupal-7:PhpModuleDisabled': { severity: normal }
+  'Drupal-7:SimpletestModuleDisabled': { severity: normal }
+  'Drupal-7:StatisticsModuleDisabled': { severity: normal }
+  'Drupal-7:UpdateModuleDisabled': { severity: normal }
+  'Drupal-7:XMLSitemapBaseURL': { severity: normal }
+  'Drupal-7:ZenRegistryRebuild': { severity: normal }
+  # FS and Database
+  'fs:largeFiles': { severity: normal }
+  'Drupal:largeFiles': { severity: normal }
+  'Drupal:updates': { severity: medium }
+  'Database:Fulltext': { severity: normal }
+  'Database:Size': { severity: normal }
+  # Security
+  'algm:Security:D7SecurityModuleUpdates': { severity: high }
+  'Drupal-7:User1LockDown': { severity: normal }
+  'fs:SensitivePublicFiles':
+    {
+      severity: high,
+      parameters: {
+        extensions: 'sql, sh, php, py, bz2, gz, tar, tgz, zip'
       }
-    'Database:Fulltext': { severity: normal }
-    'Database:Size': { severity: normal }
-    # Security
-    'algm:Security:D7SecurityModuleUpdates': { severity: high }
-    'Drupal-7:User1LockDown': { severity: normal }
-    'fs:SensitivePublicFiles':
-      {
-        severity: high,
-        parameters: {
-          extensions: 'sql, sh, php, py, bz2, gz, tar, tgz, zip'
-        }
-      }
+    }
 include:
-  - d7_security_review
+  - security_headers
