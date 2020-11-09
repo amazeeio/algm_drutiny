@@ -1,0 +1,17 @@
+title: "Storage Space"
+class: \Drutiny\algm\Audit\StorageSpace
+name: algm:StorageSpace
+tags:
+  - Space
+  - Storage
+description: |
+  A policy to notify when disk usage goes below a certain percentage threshold
+success: |
+  {{ status }}
+failure: |
+  {{ status }}
+warning: |
+  {{ warning_message }}
+parameters:
+  threshold_percent:
+    default: 10
