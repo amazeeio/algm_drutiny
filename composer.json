@@ -21,7 +21,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "dantleech/fink": "^0.10.1"
+        "dantleech/fink": "^0.10.1",
         "drutiny/plugin-drupal-8": "^2.3",
         "drutiny/plugin-drupal-7": "^2.3",
         "spatie/ssl-certificate": "^1.20"
