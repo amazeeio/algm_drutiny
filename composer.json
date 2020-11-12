@@ -31,19 +31,5 @@
             "Drutiny\\algm\\": "src/",
             "DrutinyTests\\algm\\": "tests/src/"
         }
-    },
-    "repositories": {
-      "algm_drutiny": {
-        "type": "package",
-        "package": {
-          "name": "amazeelabs/algm_drutiny",
-          "version": "1.0",
-          "source": {
-            "url": "https://github.com/AmazeeLabs/algm_drutiny.git",
-            "type": "git",
-            "reference": "origin/master"
-          }
-        }
-      }
     }
 }
