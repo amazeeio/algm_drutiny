@@ -1,5 +1,5 @@
 {
-    "name": "amazeelabs/algm_drutiny_plugin",
+    "name": "amazeeio/algm_drutiny_plugin",
     "description": "Core ALGM plugin library that contains the policies and profiles we use to run our Drutiny audits",
     "type": "library",
     "keywords": ["drutiny", "audit", "performance", "security", "accessibility", "algm"],
